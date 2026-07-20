@@ -1,6 +1,9 @@
 <template>
   <nav class="navbar">
-    <img src="/logo.jpeg" alt="Geek Circuits" class="logo" />
+    <router-link to="/" class="logo-link" @click="menuAbierto = false">
+      <img src="/logo.jpeg" alt="Geek Circuits" class="logo" />
+      <span class="logo-text">GEEK CIRCUITS</span>
+    </router-link>
 
     <button class="hamburger" :class="{ active: menuAbierto }" @click="menuAbierto = !menuAbierto" aria-label="Abrir menú">
       <span></span>
@@ -9,13 +12,13 @@
     </button>
 
     <ul class="nav-links" :class="{ open: menuAbierto }">
-      <li><a href="#nosotros" @click.prevent="irA('nosotros')">Nosotros</a></li>
-      <li><a href="#productos" @click.prevent="irA('productos')">Productos</a></li>
-      <li><a href="#servicios" @click.prevent="irA('servicios')">Servicios</a></li>
-      <li><a href="#organizacion" @click.prevent="irA('organizacion')">Organización</a></li>
-      <li><a href="#convenios" @click.prevent="irA('convenios')">Convenios</a></li>
-      <li><a href="#geek-ai" @click.prevent="irA('geek-ai')">Geek AI</a></li>
-      <li><a href="#contacto" @click.prevent="irA('contacto')">Contacto</a></li>
+      <li><router-link to="/" @click="menuAbierto = false">Nosotros</router-link></li>
+      <li><router-link to="/productos" @click="menuAbierto = false">Productos</router-link></li>
+      <li><router-link to="/servicios" @click="menuAbierto = false">Servicios</router-link></li>
+      <li><router-link to="/organizacion" @click="menuAbierto = false">Organización</router-link></li>
+      <li><router-link to="/convenios" @click="menuAbierto = false">Convenios</router-link></li>
+      <li><router-link to="/geek-ai" @click="menuAbierto = false">Geek AI</router-link></li>
+      <li><router-link to="/contacto" @click="menuAbierto = false">Contacto</router-link></li>
     </ul>
   </nav>
 </template>
@@ -24,14 +27,6 @@
 import { ref } from 'vue'
 
 const menuAbierto = ref(false)
-
-function irA(id) {
-  menuAbierto.value = false
-  const el = document.getElementById(id)
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-}
 </script>
 
 <style scoped>
@@ -49,8 +44,26 @@ function irA(id) {
   z-index: 100;
 }
 
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
 .logo {
   height: 50px;
+}
+
+.logo-text {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -66,7 +79,8 @@ function irA(id) {
   transition: color 0.2s;
 }
 
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links a.router-link-exact-active {
   color: var(--color-accent);
 }
 
@@ -104,13 +118,13 @@ function irA(id) {
   transform: translateY(-8px) rotate(-45deg);
 }
 
-:global(.section) {
-  scroll-margin-top: 90px;
-}
-
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
+  }
+
+  .logo-text {
+    font-size: 1rem;
   }
 
   .nav-links {
