@@ -1,0 +1,37 @@
+:root {
+    --color-primary: #4B2FCB;      /* morado */
+    --color-primary-dark: #2E1A80; /* morado oscuro */
+    --color-secondary: #2B4CFF;    /* azul */
+    --color-accent: #00E676;       /* verde neon */
+    --color-bg-dark: #0A0F2C;
+    --color-text-light: #F5F5FF;
+    --color-text-muted: #B8B8D9;
+
+    --font-main: 'Segoe UI', system-ui, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-light);
+    font-family: var(--font-main);
+}
+
+.section {
+    padding: 80px 8%;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(90deg, var(--color-secondary), var(--color-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+}
