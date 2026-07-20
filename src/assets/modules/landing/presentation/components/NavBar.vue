@@ -1,7 +1,14 @@
 <template>
   <nav class="navbar">
     <img src="/logo.jpeg" alt="Geek Circuits" class="logo" />
-    <ul class="nav-links">
+
+    <button class="hamburger" :class="{ active: menuAbierto }" @click="menuAbierto = !menuAbierto" aria-label="Abrir menú">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <ul class="nav-links" :class="{ open: menuAbierto }">
       <li><a href="#nosotros" @click.prevent="irA('nosotros')">Nosotros</a></li>
       <li><a href="#productos" @click.prevent="irA('productos')">Productos</a></li>
       <li><a href="#servicios" @click.prevent="irA('servicios')">Servicios</a></li>
@@ -14,7 +21,12 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+
+const menuAbierto = ref(false)
+
 function irA(id) {
+  menuAbierto.value = false
   const el = document.getElementById(id)
   if (el) {
     el.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -57,7 +69,77 @@ function irA(id) {
 .nav-links a:hover {
   color: var(--color-accent);
 }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--color-text-light);
+  border-radius: 2px;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
 :global(.section) {
   scroll-margin-top: 90px;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 74px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    background: rgba(10, 15, 44, 0.97);
+    backdrop-filter: blur(8px);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-links.open {
+    max-height: 500px;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-links a {
+    display: block;
+    padding: 16px;
+  }
 }
 </style>
