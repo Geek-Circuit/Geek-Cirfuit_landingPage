@@ -74,22 +74,28 @@ export class LandingRepository {
         ]
     }
 
-    obtenerMiembros() {
+obtenerMiembros() {
         return [
             new Miembro({
                 id: 1,
                 nombre: 'León Gómez, Deybi',
                 rol: 'Liderazgo de Operaciones y Hardware',
+                linkedin: 'https://www.linkedin.com/in/deybi-leon-380137298?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+                whatsapp: 'https://wa.me/qr/VS2FZZF2LI72D1'
             }),
             new Miembro({
                 id: 2,
                 nombre: 'Becerra Masías, Harol',
                 rol: 'Desarrollo de Proyectos y Soporte Técnico',
+                linkedin: null, // TODO: agregar cuando Harol pase su link de LinkedIn
+                whatsapp: null  // TODO: agregar cuando Harol pase su link de WhatsApp
             }),
             new Miembro({
                 id: 3,
                 nombre: 'Blancas Chávez, José',
                 rol: 'Gestión Comercial y Canales Digitales',
+                linkedin: 'https://www.linkedin.com/in/jose-blancas-elec',
+                whatsapp: 'https://wa.me/qr/4ZRRITR2PFC5M1'
             })
         ]
     }
