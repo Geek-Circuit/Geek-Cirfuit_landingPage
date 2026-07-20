@@ -24,8 +24,23 @@
 .hero-logo {
   width: 220px;
   margin-bottom: 24px;
-  filter: drop-shadow(0 0 30px var(--color-accent));
-
+  -webkit-mask-image: radial-gradient(
+      circle,
+      black 35%,
+      rgba(0, 0, 0, 0.6) 55%,
+      transparent 80%
+  );
+  mask-image: radial-gradient(
+      circle,
+      black 35%,
+      rgba(0, 0, 0, 0.6) 55%,
+      transparent 80%
+  );
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  filter: blur(0.4px);
 }
 
 .hero h1 {
